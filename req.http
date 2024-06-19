@@ -1,0 +1,87 @@
+// ===== User tests =====
+### POST user correct
+POST http://localhost:8080/user
+content-type:application/json
+
+{
+  "username": "username",
+  "password": "password",
+  "fio" : "Ivanov Ivan Ivanovich"
+}
+
+### POST user correct
+POST http://localhost:8080/user
+content-type:application/json
+
+{
+  "username": "username2",
+  "password": "password",
+  "fio" : "Petrov Petr Petrovich"
+}
+
+### POST user incorrect constraint
+POST http://localhost:8080/user
+content-type:application/json
+
+{
+  "username": "username",
+  "password": "password",
+  "fio" : "Ivanov Ivan Ivanovich"
+}
+
+### GET user correct
+GET http://localhost:8080/user/1
+
+### GET user incorrect
+GET http://localhost:8080/user/99999
+
+### PUT user correct
+PUT http://localhost:8080/user
+content-type:application/json
+
+{
+  "id" : 3,
+  "username": "put_ username2",
+  "password": "put_password",
+  "fio" : "Petrov Petr Petrovich"
+}
+
+### PUT user incorrect constrain
+PUT http://localhost:8080/user
+content-type:application/json
+
+{
+  "id" : 1,
+  "username": "put_ username2",
+  "password": "password",
+  "fio" : "Ivanov Ivan Ivanovich"
+}
+
+### DELETE user correct
+DELETE http://localhost:8080/user/3
+
+### DELETE user incorrect
+DELETE http://localhost:8080/user/99999
+
+
+// ===== Directory tests =====
+### GET check dir true
+GET http://localhost:8080/user_file/directory?dir=C:\test
+
+### GET check dir false
+GET http://localhost:8080/user_file/directory?dir=C:\test2
+
+### POST directory true
+POST http://localhost:8080/user_file/directory?dir=C:\test2
+
+### POST directory false (already exists)
+POST http://localhost:8080/user_file/directory?dir=C:\test2
+
+### DELETE directory correct
+DELETE http://localhost:8080/user_file/directory?dir=C:\test2
+
+### DELETE directory incorrect
+DELETE http://localhost:8080/user_file/directory?dir=C:\test2
+
+
+// ===== UserFile tests =====
